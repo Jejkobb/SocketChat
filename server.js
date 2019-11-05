@@ -12,10 +12,10 @@ var socket = require('socket.io');
 var io = socket(server);
 
 io.on('connection', function(socket){
-  io.emit('chat message', socket.id + ' connected');
+  //io.emit('chat message', socket.id + ' connected');
 
   socket.on('disconnect', function(){
-    io.emit('chat message', socket.id + ' disconnected');
+    //io.emit('chat message', socket.id + ' disconnected');
   });
 
   socket.on('chat message', function(msg){
