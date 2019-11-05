@@ -2,7 +2,7 @@ var inp = document.getElementById('input-box');
 var out = document.getElementById('log');
 var socket;
 
-socket = io.connect('http://localhost:5000/');
+socket = io.connect('http://protected-bayou-05600.herokuapp.com/');
 
 function drawMsg(message){
   var p = document.createElement('p');
