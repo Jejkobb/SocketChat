@@ -8,7 +8,7 @@ function drawMsg(message){
   if(message.length > 0){
     if(message[0] === '/'){
       var temp = message;
-      var reg = /[^\/? ]+/;
+      var reg = /[^\/? ]+/g;
       temp = temp.match(reg);
       console.log(temp);
     }
