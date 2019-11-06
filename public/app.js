@@ -15,11 +15,15 @@ function drawMsg(message){
   out.prepend(p);
 }
 
+function submitMessage(){
+  socket.emit('chat message', inp.value);
+  inp.value = "";
+}
+
 inp.addEventListener("keyup", function(e) {
     e.preventDefault();
     if (e.keyCode === 13) {
-        socket.emit('chat message', this.value);
-        this.value = "";
+      submitMessage();
     }
 });
 
