@@ -8,6 +8,17 @@ var color = '#'+Math.floor(Math.random()*16777215).toString(16);
 socket = io.connect('http://protected-bayou-05600.herokuapp.com/');
 
 function drawMsg(message){
+  var p = document.createElement('p');
+  var pAmt = document.getElementsByClassName('message').length;
+  if((pAmt % 2) == 0){
+    p.style.backgroundColor = "#444";
+  }
+  p.innerHTML = message;
+  p.className = "message";
+  out.prepend(p);
+}
+
+function submitMessage(){
   if(message.length > 0){
     if(message[0] === '/'){
       var command = message;
@@ -25,18 +36,7 @@ function drawMsg(message){
       return;
     }
   }
-  var p = document.createElement('p');
-  var pAmt = document.getElementsByClassName('message').length;
-  if((pAmt % 2) == 0){
-    p.style.backgroundColor = "#444";
-  }
-  p.innerHTML = message;
-  p.className = "message";
-  out.prepend(p);
-}
-
-function submitMessage(){
-  socket.emit('chat message', '<span style="color: ' + color + '">' + name + ': </span>' + inp.value);
+  socket.emit('chat message', name == "" ? inp.value : '<span style="color: ' + color + '">' + name + ': </span>' + inp.value);
   inp.value = "";
 }
 
