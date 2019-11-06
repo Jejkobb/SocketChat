@@ -19,6 +19,7 @@ function drawMsg(message){
 }
 
 function submitMessage(){
+  var message = inp.value;
   if(message.length > 0){
     if(message[0] === '/'){
       var command = message;
@@ -36,7 +37,7 @@ function submitMessage(){
       return;
     }
   }
-  socket.emit('chat message', name == "" ? inp.value : '<span style="color: ' + color + '">' + name + ': </span>' + inp.value);
+  socket.emit('chat message', name == "" ? message : '<span style="color: ' + color + '">' + name + ': </span>' + message);
   inp.value = "";
 }
 
