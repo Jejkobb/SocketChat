@@ -34,6 +34,7 @@ function submitMessage(){
         color = command[1];
         break;
       }
+      inp.value = "";
       return;
     }
   }
