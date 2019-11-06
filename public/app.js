@@ -2,15 +2,27 @@ var inp = document.getElementById('input-box');
 var out = document.getElementById('log');
 var socket;
 
+var name = "";
+var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+
 socket = io.connect('http://protected-bayou-05600.herokuapp.com/');
 
 function drawMsg(message){
   if(message.length > 0){
     if(message[0] === '/'){
-      var temp = message;
+      var command = message;
       var reg = /[^\/? ]+/g;
-      temp = temp.match(reg);
-      console.log(temp);
+      command = command.match(reg);
+      //check command
+      switch(command[0]){
+        case "setname":
+        name = command[1];
+        break;
+        case "setcolor":
+        color = command[1];
+        break;
+      }
+      return;
     }
   }
   var p = document.createElement('p');
@@ -18,7 +30,7 @@ function drawMsg(message){
   if((pAmt % 2) == 0){
     p.style.backgroundColor = "#444";
   }
-  p.innerHTML = message;
+  p.innerHTML = '<span style="color: ' + color + '">' + name + '</span>' + message;
   p.className = "message";
   out.prepend(p);
 }
