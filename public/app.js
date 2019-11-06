@@ -5,6 +5,14 @@ var socket;
 socket = io.connect('http://protected-bayou-05600.herokuapp.com/');
 
 function drawMsg(message){
+  if(message.length > 0){
+    if(message[0] === '/'){
+      var temp = message;
+      var reg = /[^\/? ]+/;
+      temp = temp.match(reg);
+      console.log(temp);
+    }
+  }
   var p = document.createElement('p');
   var pAmt = document.getElementsByClassName('message').length;
   if((pAmt % 2) == 0){
