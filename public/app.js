@@ -30,13 +30,13 @@ function drawMsg(message){
   if((pAmt % 2) == 0){
     p.style.backgroundColor = "#444";
   }
-  p.innerHTML = '<span style="color: ' + color + '">' + name + '</span>' + message;
+  p.innerHTML = message;
   p.className = "message";
   out.prepend(p);
 }
 
 function submitMessage(){
-  socket.emit('chat message', inp.value);
+  socket.emit('chat message', '<span style="color: ' + color + '">' + name + ': </span>' + inp.value);
   inp.value = "";
 }
 
